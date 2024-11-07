@@ -6,18 +6,26 @@ botaoBusca.addEventListener("click", async () => {
 
   if (!cidade) return;
 
+  const respostaApi = await buscarDadosDeClima(chaveApi, cidade);
+
+  exibirDadosDeClima(respostaApi, cidade);
+});
+
+async function buscarDadosDeClima(chaveApi, cidade) {
   const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${chaveApi}&q=${cidade}&aqi=no&lang=pt`;
   const resposta = await fetch(apiUrl);
 
   if (resposta.status !== 200) return;
 
-  const dados = await resposta.json();
+  return await resposta.json();
+}
 
-  const temperatura = Math.round(dados.current.temp_c);
-  const umidade = dados.current.humidity;
-  const condicao = dados.current.condition.text;
-  const velocidadeDoVento = dados.current.wind_kph;
-  const iconeCondicao = dados.current.condition.icon;
+function exibirDadosDeClima(respostaApi, cidade) {
+  const temperatura = Math.round(respostaApi.current.temp_c);
+  const umidade = respostaApi.current.humidity;
+  const condicao = respostaApi.current.condition.text;
+  const velocidadeDoVento = respostaApi.current.wind_kph;
+  const iconeCondicao = respostaApi.current.condition.icon;
 
   document.getElementById("cidade").textContent = cidade;
   document.getElementById("temperatura").textContent = `${temperatura} °C`;
@@ -27,4 +35,4 @@ botaoBusca.addEventListener("click", async () => {
     "velocidade-do-vento"
   ).textContent = `${velocidadeDoVento} km/h`;
   document.getElementById("icone-condicao").setAttribute("src", iconeCondicao);
-});
+}
