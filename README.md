@@ -12,7 +12,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Esta aplicação é um website de verificação de clima utilizando API, desenvolvido a partir do modelo criado pela Dev em Dobro.
 
-Link do projeto: https://alienedias.github.io/clima-tempo
+Link do projeto: <a href="https://alienedias.github.io/clima-tempo" target="_blank">https://alienedias.github.io/clima-tempo</a>
 
 ## :memo: Licença
 
